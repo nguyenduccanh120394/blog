@@ -1,0 +1,34 @@
+com/codegym/model/Post.java
+ com.codegym.model.Post
+com/codegym/service/post/PostService.java
+ com.codegym.service.post.PostService
+com/codegym/configuration/AppConfig.java
+ com.codegym.configuration.AppConfig
+com/codegym/model/User.java
+ com.codegym.model.User
+com/codegym/controller/UserController.java
+ com.codegym.controller.UserController
+com/codegym/model/Category.java
+ com.codegym.model.Category
+com/codegym/controller/PostController.java
+ com.codegym.controller.PostController
+com/codegym/repository/IUserRepository.java
+ com.codegym.repository.IUserRepository
+com/codegym/repository/ICategoryRepository.java
+ com.codegym.repository.ICategoryRepository
+com/codegym/controller/CategoryController.java
+ com.codegym.controller.CategoryController
+com/codegym/formatter/CategoryFormatter.java
+ com.codegym.formatter.CategoryFormatter
+com/codegym/service/category/CategoryService.java
+ com.codegym.service.category.CategoryService
+com/codegym/service/IGeneralService.java
+ com.codegym.service.IGeneralService
+com/codegym/configuration/AppInit.java
+ com.codegym.configuration.AppInit
+com/codegym/service/user/UserService.java
+ com.codegym.service.user.UserService
+com/codegym/repository/IPostRepository.java
+ com.codegym.repository.IPostRepository
+com/codegym/controller/AjaxController.java
+ com.codegym.controller.AjaxController

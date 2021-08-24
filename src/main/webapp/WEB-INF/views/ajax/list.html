@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>BLOG</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+            function successHandler(){
+                $.ajax({
+                    url:"/api/posts",
+                    type:"GET",
+                    success:function (data){
+                        let str = "    <tr>\n" +
+                            "        <td>Title</td>\n" +
+                            "        <td>Content</td>\n" +
+                            "        <td>Category</td>\n" +
+                            "        <td>Delete</td>\n" +
+                            "        <td>View</td>\n" +
+                            "    </tr>"
+                        for (let i=0; i<data.length; i++) {
+                            str+=`<tr><td >${data[i].title}</td><td >${data[i].content}</td><td >${data[i].category.name}</td>` +
+                                `<td><a class="deletePost" href="/api/posts/${data[i].id}">Delete</a></td>`+`<td><a class="viewPost" href="${data[i].id}">View</a></td>`+`</tr>`;
+                        }
+                        document.getElementById('postList').innerHTML =str;
+                    }
+                });
+            }
+            function findPost(){
+                let key =$('#title').val()
+                $.ajax({
+                    url: "/api/title/"+key,
+                    type: "GET",
+                    success:function (data){
+                        let str = "    <tr>\n" +
+                            "        <td>Title</td>\n" +
+                            "        <td>Content</td>\n" +
+                            "        <td>Category</td>\n" +
+                            "    </tr>"
+                        for (let i = 0; i < data.length; i++) {
+
+                                str+="<tr><td>"+data[i].title+"</td>"+"<td>"+data[i].content+"<td>"+data[i].category.name+"</td></tr>"
+                        }
+                        document.getElementById("result").innerHTML=str;
+                    }
+                });
+            }
+            $(document).ready(function () {
+                //sư kiện nào thực hiện Ajax
+                $('.deletePost').click(function (event) {
+                    //lay du lieu
+                    let a = $(this);
+                    let postId = a.attr("href");
+                    // goi ajax
+                    $.ajax({
+                        type: "DELETE",
+                        //tên API
+                        url: "/api/posts/"+postId,
+                        //xử lý khi thành công
+                        success: function (data) {
+                            alert(data);
+                            a.parent().parent().remove();
+                        }
+
+                    });
+                    //chặn sự kiện mặc định của thẻ
+                    event.preventDefault();
+                });
+            })
+
+    </script>
+</head>
+<body onload="successHandler()">
+<table id="postList" border="1" onload="successHandler()">
+</table>
+<input type="submit" value="Read More" style="margin-left:500px;border-radius: 30% " onclick=""></br>
+<input type="text" placeholder="Enter Tittle" id="title" name="title">
+<input type="submit" onclick="findPost()">
+<table id="result" border="1"></table>
+
+</body>
+</html>
